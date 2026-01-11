@@ -1,17 +1,18 @@
-import { useEffect, useState } from 'react';
-import ProductCard from '@/components/catalog/product/productCard';
-import type I_Product from '@/interfaces/catalog/product';
-import type I_Category from '@/interfaces/catalog/category';
-import type I_SubCategory from '@/interfaces/catalog/subCategory';
-import styles from './allProducts.module.scss';
-import createBreadCrumbs from '@/pages/allProducts/createBreadcrumbs';
 import CategoryItem from '@/components/catalog/category-item/category-item';
+import ProductCard from '@/components/catalog/product/productCard';
+import Sort from '@/components/catalog/sort/sort';
+import Spinner from '@/components/catalog/spinner/spinner';
+import type I_Category from '@/interfaces/catalog/category';
+import type I_Product from '@/interfaces/catalog/product';
 import type I_SortedProduct from '@/interfaces/catalog/sortedProduct';
+import type I_SubCategory from '@/interfaces/catalog/subCategory';
+import createBreadCrumbs from '@/pages/allProducts/createBreadcrumbs';
 import createProductData from '@/pages/allProducts/createProductData';
-import getSortedProductsData from '@/pages/allProducts/getSortedProductsData';
 import getCategoriesData from '@/pages/allProducts/getCategoriesData';
 import getSearchData from '@/pages/allProducts/getSearchData';
-import Sort from '@/components/catalog/sort/sort';
+import getSortedProductsData from '@/pages/allProducts/getSortedProductsData';
+import { useEffect, useState } from 'react';
+import styles from './allProducts.module.scss';
 
 function AllProducts() {
   const [products, setProducts] = useState<I_Product[] | I_SortedProduct[]>([]);
@@ -256,6 +257,8 @@ function AllProducts() {
   function handleLoadMoreButton() {
     setProductsLimit(state => state + offset);
   }
+
+  if (products.length === 0) return <Spinner />;
 
   return (
     <section className={styles.catalog}>

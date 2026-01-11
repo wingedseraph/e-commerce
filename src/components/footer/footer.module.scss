@@ -18,6 +18,7 @@ $breakpoint-mobile: 768px;
   line-height: 1;
   width: 100%;
   display: flex;
+  gap: 5px;
   justify-content: center;
   align-items: center;
   text-decoration: none;
@@ -29,6 +30,7 @@ $breakpoint-mobile: 768px;
 }
 .link_basic {
   text-decoration: none;
+
 }
 .link_git_hub,
 .link_rs_school {
